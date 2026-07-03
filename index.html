@@ -70,7 +70,7 @@ input,select{font-size:17px;padding:12px}
 label{display:block;font-size:.82rem;color:var(--maroon);font-weight:700;margin:8px 0 2px;font-family:"Noto Sans KR",sans-serif}
 input,select{width:100%;padding:7px 9px;border:1px solid #cdbd92;border-radius:5px;background:#fffdf6;font-family:inherit;font-size:.95rem}
 .pill{display:inline-block;background:var(--tan);border-radius:5px;padding:2px 9px;font-size:.82rem;font-family:"Noto Sans KR",sans-serif;margin:2px 3px 0 0}
-.abrow{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:8px 0}
+.abrow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:8px 0}.ab{min-width:0;overflow:hidden}
 .ab{background:#faf6ea;border:1.5px solid #d8cdb2;border-radius:8px;padding:8px 6px;text-align:center}
 .ab b{display:block;color:var(--maroon);font-size:.8rem;font-family:"Noto Sans KR",sans-serif}
 .ab .val{display:flex;align-items:center;justify-content:center;gap:6px;margin:4px 0}
@@ -86,7 +86,7 @@ input,select{width:100%;padding:7px 9px;border:1px solid #cdbd92;border-radius:5
 .sk input{width:auto;margin-top:3px}
 .sk.dis{opacity:.45;cursor:not-allowed}
 .sk small{display:block;color:#6d5f45}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:center;margin:8px 0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;text-align:center;margin:8px 0}
 .st{background:var(--tan);border-radius:8px;padding:10px 4px}
 .st .big{font-size:1.5rem;font-weight:900;color:var(--maroon)}
 .st .lab{font-size:.75rem;font-family:"Noto Sans KR",sans-serif}
@@ -100,7 +100,7 @@ input,select{width:100%;padding:7px 9px;border:1px solid #cdbd92;border-radius:5
 #showcard{position:fixed;inset:0;background:#1d1512;color:#f3efe4;z-index:99;display:none;overflow:auto;padding:22px;font-family:"Noto Sans KR",sans-serif}
 #showcard .nm{font-family:"Noto Serif KR",serif;font-size:2rem;font-weight:900;color:#e9dca6}
 #showcard .meta{color:#c9a54c;margin:2px 0 14px;font-size:1.05rem}
-#showcard .big4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+#showcard .big4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}
 #showcard .big4 div{background:#2a2118;border-radius:10px;padding:12px 4px;text-align:center}
 #showcard .big4 b{display:block;font-size:2rem;color:#f6ecd8}
 #showcard .big4 span{font-size:.8rem;color:#c9a54c}
@@ -131,6 +131,7 @@ body{background:#0d0805 url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/
  label{font-size:.95rem}
  h1{font-size:1.45rem}
 }
+html,body{max-width:100%;overflow-x:hidden}img{max-width:100%}
 </style></head><body><script>window.onerror=function(m,s,l){try{var d=document.getElementById('errbar');if(!d){d=document.createElement('div');d.id='errbar';d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#a03a30;color:#fff;font:14px/1.5 sans-serif;padding:9px 12px';document.body.appendChild(d)}d.textContent='⚠ 오류가 발생했습니다: '+m+' (줄 '+l+') — 이 화면을 캡처해서 보내주세요';}catch(e){}return false};</script><div id="bootwarn" style="background:#a03a30;color:#fff;font:15px/1.6 sans-serif;padding:12px 16px;text-align:center">⏳ 앱을 불러오는 중입니다… <b>이 빨간 띠가 사라지지 않으면</b> 앱이 실행되지 않은 것입니다 → ① 카톡·드라이브 미리보기가 아니라 <b>Chrome으로 열기</b> ② 파일 동기화(다운로드)가 끝난 뒤 다시 열기 ③ 그래도 안 되면 이 화면을 캡처해서 보내주세요</div>
 <header><div><small>THE BLACK SALT MINE</small><br><b>캐릭터 생성기</b></div><div style="font-size:.8rem"><a href="05_종족클래스북.html" style="color:#e9dca6">종족·클래스 북 보기 →</a> · 포인트 바이 27점</div></header>
 <main>
