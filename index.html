@@ -1,6 +1,6 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>검은 소금 광산 — 캐릭터 생성기</title>
-<style>/* BSM v38 2COL-FIXED */
+<style>/* BSM v39 GRID-COLLAPSE */
 
 :root{--paper:#f3efe4;--ink:#2b2620;--maroon:#7c2320;--gold:#c9a54c;--tan:#e9dca6}
 *{box-sizing:border-box}
@@ -100,6 +100,13 @@ input,select{font-size:17px;padding:12px}
 h2{font-size:1.35rem}
 }
 html,body{max-width:100%;overflow-x:hidden}
+/* 폰·태블릿 세로: 페이지 1단 접기 (v39) */
+@media(max-width:900px){
+.grid{grid-template-columns:1fr;gap:18px}
+main{padding:16px 12px;margin:8px auto}
+header{padding:10px 12px}
+#showcard .big4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 </style></head><body><script>window.onerror=function(m,s,l){try{var d=document.getElementById('errbar');if(!d){d=document.createElement('div');d.id='errbar';d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#a03a30;color:#fff;font:14px/1.5 sans-serif;padding:9px 12px';document.body.appendChild(d)}d.textContent='⚠ 오류가 발생했습니다: '+m+' (줄 '+l+') — 이 화면을 캡처해서 보내주세요';}catch(e){}return false};</script><div id="bootwarn" style="background:#a03a30;color:#fff;font:15px/1.6 sans-serif;padding:12px 16px;text-align:center">⏳ 앱을 불러오는 중입니다… <b>이 빨간 띠가 사라지지 않으면</b> 앱이 실행되지 않은 것입니다 → ① 카톡·드라이브 미리보기가 아니라 <b>Chrome으로 열기</b> ② 파일 동기화(다운로드)가 끝난 뒤 다시 열기 ③ 그래도 안 되면 이 화면을 캡처해서 보내주세요</div>
 <header><div><small>THE BLACK SALT MINE</small><br><b>캐릭터 생성기</b></div><div style="font-size:.8rem"><a href="05_종족클래스북.html" style="color:#e9dca6">종족·클래스 북 보기 →</a> · 포인트 바이 27점</div></header>
 <main>
