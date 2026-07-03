@@ -9,7 +9,51 @@ header b{font-size:1.05rem}header small{color:var(--gold);letter-spacing:.15em}
 main{max-width:1060px;margin:14px auto;background:var(--paper);box-shadow:0 0 20px rgba(60,40,20,.25);padding:26px 34px}
 h2{color:var(--maroon);font-size:1.25rem;border-bottom:1.5px solid var(--gold);padding-bottom:3px;margin:20px 0 10px}
 .grid{display:grid;grid-template-columns:300px 1fr;gap:26px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+/* 터치 기기 공통(폰+태블릿, 방향 불문): 손가락 크기 보정 */
+@media(pointer:coarse){
+body{font-size:17px}
+input,select{font-size:17px;padding:12px}
+.ab .val button{min-width:46px;min-height:44px;font-size:1.4rem;border-radius:10px}
+.ab .val .num{font-size:1.6rem;font-weight:900;min-width:44px;text-align:center}
+.sk{padding:13px 12px}
+.sk input{width:22px;height:22px;flex:0 0 22px}
+.btn{font-size:17px;padding:15px 18px;border-radius:10px}
+.stats .big{font-size:1.6rem}
+label{font-size:1rem}
+}
+/* 태블릿 가로: 능력치 6열은 좁으니 3열로 */
+@media(pointer:coarse) and (min-width:901px){
+.abrow{grid-template-columns:repeat(3,1fr)}
+.ab{min-width:0}
+}
+@media(max-width:900px){
+.grid{grid-template-columns:1fr}
+body{overflow-x:hidden;font-size:17px}
+main{padding:18px 12px}
+h2{font-size:1.4rem}
+label{font-size:1rem}
+input,select{font-size:17px;padding:12px}
+/* 능력치: 2열, 큰 숫자, 44px 터치 버튼 */
+.abrow{grid-template-columns:repeat(2,1fr);gap:10px}
+.ab{min-width:0;padding:12px 8px}
+.ab b{font-size:1.05rem}
+.ab .val{gap:10px;margin:8px 0}
+.ab .val .num{font-size:1.8rem;font-weight:900;min-width:46px;text-align:center}
+.ab .val button{min-width:46px;min-height:44px;font-size:1.4rem;border-radius:10px}
+.ab small,.ab .race{font-size:.85rem}
+/* 기술·유파: 큰 체크박스와 글자 */
+.skills{grid-template-columns:1fr;font-size:1rem;gap:9px}
+.sk{padding:13px 12px}
+.sk input{width:22px;height:22px;flex:0 0 22px}
+.sk small{font-size:.88rem}
+/* 완성 4카드·버튼 */
+.stats{gap:8px}
+.stats .big{font-size:1.6rem}.stats .lab{font-size:.82rem}
+.btn{font-size:17px;padding:15px 18px;border-radius:10px}
+.exp{font-size:.95rem}
+#hebox,#hcbox,#rgbox{font-size:1rem}
+#hebox select,#hcbox select,#rgbox select{width:auto;min-width:110px;display:inline-block}
+}
 .card{background:#faf6ea;border:1px solid #d8cdb2;border-radius:8px;padding:14px}
 label{display:block;font-size:.82rem;color:var(--maroon);font-weight:700;margin:8px 0 2px;font-family:"Noto Sans KR",sans-serif}
 input,select{width:100%;padding:7px 9px;border:1px solid #cdbd92;border-radius:5px;background:#fffdf6;font-family:inherit;font-size:.95rem}
