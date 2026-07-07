@@ -1,6 +1,6 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>검은 소금 광산 — 캐릭터 생성기</title>
-<style>/* BSM v54 GOLD */
+<style>/* BSM v55 NEWCHAR */
 #showcard .ctb{width:100%;border-collapse:collapse;margin:6px 0;font-size:.92rem}
 #showcard .ctb th{color:#c9a54c;text-align:left;padding:4px 6px;border-bottom:1px solid #4a3b28}
 #showcard .ctb td{padding:5px 6px;border-bottom:1px solid #33291c;vertical-align:top}
@@ -190,7 +190,7 @@ header{padding:10px 12px}
 <div id="exlist" class="exp" style="margin-top:6px"></div>
 </div>
 <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-    <button class="btn" onclick="exportJSON()">JSON 내보내기 — 마스터에게 제출</button>
+    <button class="btn ghost" onclick="newChar()" style="margin-right:6px">🔄 새 캐릭터</button><button class="btn" onclick="exportJSON()">JSON 내보내기 — 마스터에게 제출</button>
     <button class="btn ghost" onclick="copyJSON()">📋 JSON 복사 — 파일이 안 될 때</button>
     <button class="btn ghost" onclick="printCard()">🖨 카드 인쇄</button>
     <button class="btn" style="background:#3e5c2e" onclick="showCard()">📊 내 스테이터스</button>
@@ -643,6 +643,11 @@ function validExport(){
  const sknEff=cls.skn+(qs('race').value==='하프엘프'?2:0); if(picked.size<sknEff){flash('기술을 '+sknEff+'개 골라야 합니다'+(qs('race').value==='하프엘프'?' (하프엘프 +2 포함)':''));return null} if(qs('race').value==='하프엘프'&&(!heA||!heB||heA===heB)){flash('하프엘프: 서로 다른 두 능력에 +1을 배분하세요');return null} if(qs('race').value==='하이 엘프'&&!raceCant){flash('하이 엘프: 무료 소마법을 하나 고르세요');return null} const B=spellBudget(); if(B&&(cants.size<B.cant||knowns.size<B.sp)){flash('주문을 다 고르지 않았습니다 — 소마법 '+B.cant+'개, 주문 '+B.sp+'개');return null} const needFS=(qs('cls').value==='전사')||((qs('cls').value==='팔라딘'||qs('cls').value==='레인저')&&LV>=2); if(needFS&&!style){flash('전투 유파를 골라야 합니다');return null}
  return data();
 }
+function newChar(){
+ if(!confirm('현재 캐릭터를 지우고 새로 시작할까요? (저장된 내용이 사라집니다)'))return;
+ try{localStorage.removeItem('bsm.character')}catch(e){}
+ location.reload();
+}
 function exportJSON(){
  const d=validExport(); if(!d)return;
  const a=document.createElement('a');
@@ -669,7 +674,7 @@ function copyJSON(){
 qs('race').innerHTML=Object.keys(RACES).map(r=>'<option>'+r+'</option>').join('');
 qs('cls').innerHTML=Object.keys(CLASSES).map(c=>'<option>'+c+'</option>').join('');
 try{const s=localStorage.getItem('bsm.character'); if(s){const d=JSON.parse(s); base=d.baseScores||base; LV=d.lv||d.level||1; asiPlus=d.asiPlus||{}; extras=d.extras||[]; if(qs('gold')&&d.gold!=null)qs('gold').value=d.gold; cants=new Set(d.cantrips||[]); knowns=new Set(d.spells||[]); style=d.fightStyle||''; subclass=d.subclass||'';
- if(d.heAsi){heA=d.heAsi[0]||'';heB=d.heAsi[1]||''} if(d.raceCantrip)raceCant=d.raceCantrip; if(d.favEnemy)favEnemy=d.favEnemy; if(d.favTerrain)favTerrain=d.favTerrain; if(d.cname)qs('cname').value=d.cname; if(d.personality&&qs('pers'))qs('pers').value=d.personality; if(d.secret&&qs('secret'))qs('secret').value=d.secret; if(d.player)qs('player').value=d.player; if(d.bg)qs('bg').value=d.bg;
+ if(d.heAsi){heA=d.heAsi[0]||'';heB=d.heAsi[1]||''} if(d.raceCantrip)raceCant=d.raceCantrip; if(d.favEnemy)favEnemy=d.favEnemy; if(d.favTerrain)favTerrain=d.favTerrain; if(d.cname)qs('cname').value=(d.cname&&d.cname!=='이름 없는 모험자')?d.cname:''; if(d.personality&&qs('pers'))qs('pers').value=d.personality; if(d.secret&&qs('secret'))qs('secret').value=d.secret; if(d.player)qs('player').value=d.player; if(d.bg)qs('bg').value=d.bg;
  if(d.race)qs('race').value=d.race; if(d.cls)qs('cls').value=d.cls; picked=new Set(Object.keys(d.classSkills||{}));};renderExtraList()}catch(e){}
 R();
 </script><div id="printcard"></div><script>(function(){var b=document.getElementById('bootwarn');if(b)b.parentNode.removeChild(b);})();
