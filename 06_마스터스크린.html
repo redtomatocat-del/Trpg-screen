@@ -522,7 +522,7 @@ function normPC(d){
 }
 function addManualPC(){
  const n=qs('mpname').value.trim(); if(!n){toast('이름을 입력하세요');return}
- S.list.push({id:uid++,kind:'pc',name:n,player:'',meta:'수동 입력',
+ S.list.push({id:uid++,kind:'pc',name:n,player:'',lvl:1,raw:{cls:'',race:'',finalScores:{},level:1},meta:'수동 입력 Lv1',
   maxhp:+qs('mphp').value||10,hp:+qs('mphp').value||10,ac:+qs('mpac').value||12,
   atk:0,dmgdie:'',pp:10,dex:0,init:null,ds:{s:0,f:0,stable:false,dead:false}});
  qs('mpname').value='';render();
@@ -922,14 +922,15 @@ function pcMod(v){return Math.floor((v-10)/2)}
 function bumpDie(s,inc){return String(s||'').replace(/([+-]\d+)/,m=>{const n=+m+inc;return (n>=0?'+':'')+n})}
 function levelUpPC(id){
  const c=byId(id); if(!c||c.kind!=='pc')return;
+ if(!Number.isFinite(c.lvl))c.lvl=1;
  if(c.lvl>=5){toast(c.name+'은(는) 이미 5레벨(상한)');return}
  const M=CMETA[(c.raw&&c.raw.cls)||'']||{hd:8,pri:'STR'};
  const fs=(c.raw&&c.raw.finalScores)||{};
  c.lvl++;
  // HP: 평균 상승 + 건강 수정치 (+힐 드워프 +1)
- let gain=Math.floor(M.hd/2)+1+pcMod(fs.CON||10)+(((c.raw&&c.raw.race)||'')==='힐 드워프'?1:0);
- if(gain<1)gain=1;
- c.maxhp+=gain; c.hp+=gain;
+ let gain=Math.floor(M.hd/2)+1+pcMod((fs&&fs.CON)||10)+(((c.raw&&c.raw.race)||'')==='힐 드워프'?1:0);
+ if(!Number.isFinite(gain)||gain<1)gain=1;
+ if(!Number.isFinite(c.maxhp))c.maxhp=c.hp||10; if(!Number.isFinite(c.atk))c.atk=0; c.maxhp+=gain; c.hp+=gain;
  let notes=['HP +'+gain];
  if(c.lvl===4){ // 능력치 상승: 주능력 +2 (간이)
   fs[M.pri]=(fs[M.pri]||10)+2;
